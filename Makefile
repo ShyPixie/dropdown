@@ -15,8 +15,8 @@ object = mintty-dropdown
 all: mintty-dropdown
 
 mintty-dropdown: $(object).ahk
-	$(MKPATH)\$(AHK2EXE) /in $^ /bin $(MKPATH)\$(AHKRES)
-	$(MKPATH)\$(PACKER) $(object).exe
+	$(MKPATH)/$(AHK2EXE) /in $^ /bin $(MKPATH)/$(AHKRES)
+	$(MKPATH)/$(PACKER) $(object).exe
 
 clean: $(object)
 	$(RM) -f $^.exe
