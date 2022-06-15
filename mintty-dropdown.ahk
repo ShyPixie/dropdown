@@ -64,7 +64,7 @@ if height contains ERROR
 
 IniRead, consoleHotKey, %iniFile%, Global, consoleHotKey
 if consoleHotKey contains ERROR
-    consoleHotKey = Launch_App2
+    consoleHotKey = !F12
 HotKey, %consoleHotKey%, ConsoleCheck
 
 IniRead, fullScreenHotKey, %iniFile%, Global, fullScreenHotKey
