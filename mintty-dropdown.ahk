@@ -29,6 +29,7 @@ if not A_IsAdmin
 }
 
 Menu, Tray, NoStandard
+Menu, Tray, Add, Reload, BtnReload
 Menu, Tray, Add, Exit, BtnExit
 
 iniFile = %A_WorkingDir%\mintty-dropdown.ini
@@ -117,6 +118,15 @@ start() {
     }
 }
 
+stop() {
+    global
+
+    IfWinExist %window%
+    {
+        WinClose
+    }
+}
+
 checkWinStatus() {
     global
 
@@ -188,11 +198,9 @@ Ignore:
     return
 
 BtnExit:
-    window = ahk_class mintty-dropdown
-
-    IfWinExist %window%
-    {
-        WinClose
-    }
-
+    stop()
     ExitApp
+
+BtnReload:
+    stop()
+    Reload
