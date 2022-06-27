@@ -10,11 +10,11 @@ endif
 
 RM = /bin/rm.exe
 
-object = mintty-dropdown
+object = cmd-dropdown
 
-all: mintty-dropdown
+all: cmd-dropdown
 
-mintty-dropdown: $(object).ahk
+cmd-dropdown: $(object).ahk
 	$(MKPATH)/$(AHK2EXE) /in $^ /bin $(MKPATH)/$(AHKRES)
 	$(MKPATH)/$(PACKER) $(object).exe
 

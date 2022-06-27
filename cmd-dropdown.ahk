@@ -1,19 +1,19 @@
-; This file is part of mintty-dropdown.
+; This file is part of cmd-dropdown.
 ;
 ; Lara Maia <dev@lara.click> 2016
 ;
-; mintty-dropdown is free software: you can redistribute it and/or modify
+; cmd-dropdown is free software: you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
 ; the Free Software Foundation, either version 3 of the License, or
 ; (at your option) any later version.
 
-; mintty-dropdown is distributed in the hope that it will be useful,
+; cmd-dropdown is distributed in the hope that it will be useful,
 ; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ; GNU General Public License for more details.
 
 ; You should have received a copy of the GNU General Public License
-; along with mintty-dropdown.  If not, see <http://www.gnu.org/licenses/>.
+; along with cmd-dropdown.  If not, see <http://www.gnu.org/licenses/>.
 ;
 
 #NoEnv
@@ -32,32 +32,15 @@ Menu, Tray, NoStandard
 Menu, Tray, Add, Reload, BtnReload
 Menu, Tray, Add, Exit, BtnExit
 
-iniFile = %A_WorkingDir%\mintty-dropdown.ini
+iniFile = %A_WorkingDir%\cmd-dropdown.ini
 
 IniRead, rootDir, %iniFile%, Global, rootDir
 if rootDir contains ERROR
-{
-    MsgBox,, Error, Please, check your config file!
-    Gosub BtnExit
-}
-
-IniRead, shell, %iniFile%, Global, shell
-if shell contains ERROR
-    shell = /bin/sh
+    rootDir = C:\
 
 IniRead, homeDir, %iniFile%, Global, homeDir
 if homeDir contains ERROR
     homeDir = %rootDir%\home\%A_UserName%
-
-IniRead, binDir, %iniFile%, Global, binDir
-if binDir contains ERROR
-    binDir = /usr/bin
-
-IniRead, minttyPath, %iniFile%, Global, minttyPath
-if minttyPath contains ERROR
-    minttyPath = %rootDir%\%binDir%\mintty.exe
-
-console = %minttyPath% --class mintty-dropdown %shell%
 
 IniRead, height, %iniFile%, Global, height
 if height contains ERROR
@@ -90,7 +73,7 @@ HotKey, %screenMoveLeft%, screenMoveLeftCheck
 
 CurrentScreenWidth = 0
 CurrentScreenHeight = 0
-window = ahk_class mintty-dropdown
+window =
 start()
 setGeometry()
 
@@ -113,8 +96,9 @@ start() {
 
     IfWinNotExist %window%
     {
-        Run %console%, %homeDir%, Hide
-        WinWait %window%
+        Run C:\Windows\system32\cmd.exe, %homeDir%, Hide, cmdPid
+	window = ahk_pid %cmdPid%
+	WinWait %window%
     }
 }
 
@@ -155,8 +139,6 @@ toggle() {
 }
 
 consoleCheck:
-    window = ahk_class mintty-dropdown
-
     start()
     setGeometry()
     toggle()

@@ -10,18 +10,18 @@ if defined ProgramFiles(x86) (
     set AHKRES=resources32.bin
 )
 
-set object=mintty-dropdown
+set object=cmd-dropdown
 
 if "%~1" == "clean" (
     call:clean
 ) else (
-    call:mintty-dropdown
+    call:cmd-dropdown
 )
 
 echo Successfully compiled
 goto:EOF
 
-:mintty-dropdown
+:cmd-dropdown
     echo %MKPATH%\%AHK2EXE% /in %object%.ahk /bin %MKPATH%\%AHKRES%
     %MKPATH%\%AHK2EXE% /in %object%.ahk /bin %MKPATH%\%AHKRES%
     echo %MKPATH%\%PACKER% %object%.exe

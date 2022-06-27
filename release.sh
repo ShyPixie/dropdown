@@ -11,6 +11,6 @@ function mk {
 
 rm -f *.zip
 mk x86
-pack mintty-dropdown 32
+pack cmd-dropdown 32
 mk amd64
-pack mintty-dropdown 64
+pack cmd-dropdown 64
