@@ -2,7 +2,6 @@
 
 set MKPATH=constructor
 set AHK2EXE=Ahk2Exe.exe
-set PACKER=upx.exe
 
 if defined ProgramFiles(x86) (
     set AHKRES=resources64.bin
@@ -22,10 +21,8 @@ echo Successfully compiled
 goto:EOF
 
 :mintty-dropdown
-    echo %MKPATH%\%AHK2EXE% /in %object%.ahk /bin %MKPATH%\%AHKRES%
-    %MKPATH%\%AHK2EXE% /in %object%.ahk /bin %MKPATH%\%AHKRES%
-    echo %MKPATH%\%PACKER% %object%.exe
-    %MKPATH%\%PACKER% %object%.exe
+    echo %MKPATH%\%AHK2EXE% /in %object%.ahk /base %MKPATH%\%AHKRES%
+    %MKPATH%\%AHK2EXE% /in %object%.ahk /base %MKPATH%\%AHKRES% /compress 2 /silent verbose
 goto:EOF
 
 :clean
