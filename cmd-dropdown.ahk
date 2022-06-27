@@ -34,13 +34,13 @@ Menu, Tray, Add, Exit, BtnExit
 
 iniFile = %A_WorkingDir%\cmd-dropdown.ini
 
-IniRead, rootDir, %iniFile%, Global, rootDir
-if rootDir contains ERROR
-    rootDir = C:\
-
 IniRead, homeDir, %iniFile%, Global, homeDir
 if homeDir contains ERROR
-    homeDir = %rootDir%\home\%A_UserName%
+    homeDir = %A_Desktop%\..
+
+IniRead, cmdParams, %iniFile%, Global, cmdParams
+if cmdParams contains ERROR
+    cmdParams =
 
 IniRead, height, %iniFile%, Global, height
 if height contains ERROR
@@ -96,7 +96,7 @@ start() {
 
     IfWinNotExist %window%
     {
-        Run C:\Windows\system32\cmd.exe, %homeDir%, Hide, cmdPid
+        Run %ComSpec% %cmdParams%, %homeDir%, Hide, cmdPid
 	window = ahk_pid %cmdPid%
 	WinWait %window%
     }
