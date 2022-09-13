@@ -65,8 +65,8 @@ if fullScreenHotKey contains ERROR
     fullScreenHotKey = !F11
 HotKey, %fullScreenHotKey%, fullScreenCheck
 
-if fullScreenHotKey != !F11
-    HotKey, !F11, Ignore
+if fullScreenHotKey != F11
+    HotKey, F11, Ignore
 if fullScreenHotKey != !Enter
     Hotkey, !Enter, Ignore
 
@@ -160,12 +160,12 @@ fullScreenCheck:
         a += 1
         if InStr(Mod(a, 2), 0)
         {
-            Send !{F11}
+            Send {F11}
             setGeometry()
         }
         else
         {
-            Send !{F11}
+            Send {F11}
         }
     }
 
