@@ -3,20 +3,17 @@
 A little [AutoHotkey](http://www.autohotkey.com/) script that adds
 support for drop-down in the cmd.
 
-## Dependencies
-- Cygwin or MSYS
-
 ## How to use?
 1. Download from Releases tab
 2. Run cmd-dropdown.exe
-3. Press the Calculator key to toggle console
+3. Press the Alt+F12 key to toggle console
 
 You can change the toggle key, default shell, terminal size, and other
 options by editing configuration file (cmd-dropdown.ini)
 
 ---
 
-Lara Maia <dev@lara.click> 2016
+Lara Maia <dev@lara.monster> 2022
 
 cmd-dropdown is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
