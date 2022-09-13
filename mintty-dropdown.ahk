@@ -16,6 +16,15 @@
 ; along with mintty-dropdown.  If not, see <http://www.gnu.org/licenses/>.
 ;
 
+;@Ahk2Exe-AddResource dropdown.ico, 160
+;@Ahk2Exe-AddResource dropdown.ico, 206
+;@Ahk2Exe-AddResource dropdown.ico, 207
+;@Ahk2Exe-AddResource dropdown.ico, 208
+;@Ahk2Exe-SetMainIcon dropdown.ico
+;@Ahk2Exe-SetCopyright 2022
+;@Ahk2Exe-SetInternalName dropdown
+;@Ahk2Exe-SetName cmd-dropdown
+
 #NoEnv
 #SingleInstance ignore
 #InputLevel, 100
