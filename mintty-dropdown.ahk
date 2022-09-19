@@ -100,6 +100,7 @@ HotKey, %screenMoveLeft%, screenMoveLeftCheck
 CurrentScreenWidth = 0
 CurrentScreenHeight = 0
 window = ahk_class mintty-dropdown
+fullscreen = 0
 start()
 setGeometry()
 
@@ -149,6 +150,27 @@ checkWinStatus() {
     return "show"
 }
 
+toggleFullScreen() {
+    global
+
+    if InStr(checkWinStatus(), "hide")
+    {
+        a += 1
+        if InStr(Mod(a, 2), 0)
+        {
+            setGeometry()
+            Send !{F11}
+            setGeometry()
+            fullscreen = 0
+        }
+        else
+        {
+            Send !{F11}
+            fullscreen = 1
+        }
+    }
+}
+
 toggle() {
     global
 
@@ -160,6 +182,11 @@ toggle() {
     {
         WinShow %window%
         WinActivate %window%
+
+        if %fullscreen%
+        {
+            toggleFullScreen()
+        }
     }
 }
 
@@ -173,19 +200,7 @@ consoleCheck:
     return
 
 fullScreenCheck:
-    if InStr(checkWinStatus(), "hide")
-    {
-        a += 1
-        if InStr(Mod(a, 2), 0)
-        {
-            Send !{F11}
-            setGeometry()
-        }
-        else
-        {
-            Send !{F11}
-        }
-    }
+    toggleFullScreen()
 
     return
 
