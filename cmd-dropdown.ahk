@@ -160,12 +160,13 @@ fullScreenCheck:
         a += 1
         if InStr(Mod(a, 2), 0)
         {
-            Send {F11}
+            setGeometry()
+            Send {Alt Down}{Enter}{Alt Up}
             setGeometry()
         }
         else
         {
-            Send {F11}
+            Send {Alt Down}{Enter}{Alt Up}
         }
     }
 
