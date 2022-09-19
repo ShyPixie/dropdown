@@ -83,6 +83,7 @@ HotKey, %screenMoveLeft%, screenMoveLeftCheck
 CurrentScreenWidth = 0
 CurrentScreenHeight = 0
 window =
+fullscreen = 0
 start()
 setGeometry()
 
@@ -106,8 +107,8 @@ start() {
     IfWinNotExist %window%
     {
         Run %ComSpec% %cmdParams%, %homeDir%, Hide, cmdPid
-	window = ahk_pid %cmdPid%
-	WinWait %window%
+        window = ahk_pid %cmdPid%
+        WinWait %window%
     }
 }
 
@@ -133,6 +134,27 @@ checkWinStatus() {
     return "show"
 }
 
+toggleFullScreen() {
+    global
+
+    if InStr(checkWinStatus(), "hide")
+    {
+        a += 1
+        if InStr(Mod(a, 2), 0)
+        {
+            setGeometry()
+            Send {Alt Down}{Enter}{Alt Up}
+            setGeometry()
+            fullscreen = 0
+        }
+        else
+        {
+            Send {Alt Down}{Enter}{Alt Up}
+            fullscreen = 1
+        }
+    }
+}
+
 toggle() {
     global
 
@@ -144,6 +166,11 @@ toggle() {
     {
         WinShow %window%
         WinActivate %window%
+
+        if %fullscreen%
+        {
+            toggleFullScreen()
+        }
     }
 }
 
@@ -155,21 +182,7 @@ consoleCheck:
     return
 
 fullScreenCheck:
-    if InStr(checkWinStatus(), "hide")
-    {
-        a += 1
-        if InStr(Mod(a, 2), 0)
-        {
-            setGeometry()
-            Send {Alt Down}{Enter}{Alt Up}
-            setGeometry()
-        }
-        else
-        {
-            Send {Alt Down}{Enter}{Alt Up}
-        }
-    }
-
+    toggleFullScreen()
     return
 
 screenMoveLeftCheck:
